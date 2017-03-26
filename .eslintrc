@@ -3,6 +3,9 @@
   "env": {
     "browser": true
   },
+  "globals" : {
+    "google": true
+  },
   "rules" : {
     "no-use-before-define": ["error", { "functions": false }]
   },

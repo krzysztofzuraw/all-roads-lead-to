@@ -5,3 +5,12 @@
 .question-form {
   margin-top: calc(100% / 2);
 }
+
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+.is-hidden {
+  display: none !important;
+}
