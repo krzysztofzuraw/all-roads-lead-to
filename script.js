@@ -44,9 +44,9 @@ function initMap() {  // eslint-disable-line no-unused-vars
     const place = searchForm.querySelector('[name=place]').value;
     geocodeAddressPromise(place).then((response) => {
       onGeocodeComplete(response);
-      const title_text = `All roads lead to ${place}`;
-      document.title = title_text;
-      title.innerHTML = title_text;
+      const titleText = `All roads lead to ${place}`;
+      document.title = titleText;
+      title.innerHTML = titleText;
     }, (error) => {
       alert(error);
     });
@@ -63,5 +63,12 @@ function onGeocodeComplete(coords) {
   const marker = new google.maps.Marker({  // eslint-disable-line no-unused-vars
     position: coords,
     map,
+    title: 'Place where all roads lead',
+    icon: 'compass.png',
   });
+}
+
+function animateSnackbar() {
+  const snackbarContainer = document.querySelector('#select-points-toast');
+  // https://getmdl.io/components/index.html#snackbar-section
 }
