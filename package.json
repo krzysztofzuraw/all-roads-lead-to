@@ -4,8 +4,10 @@
   "description": "Fun application",
   "main": "script.js",
   "scripts": {
-    "start": "browser-sync start --server --files '*.css, *.html, *.js'"
+    "start": "browser-sync start --server --files '*.css, *.html, *.js'",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore"
   },
+  "pre-commit": ["lint"],
   "keywords": [
     "google_maps"
   ],
@@ -18,6 +20,7 @@
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.9.0"
+    "eslint-plugin-react": "^6.9.0",
+    "pre-commit": "^1.2.2"
   }
 }
