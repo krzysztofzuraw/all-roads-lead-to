@@ -2,7 +2,8 @@ const searchForm = document.querySelector('.search-form');
 const mapElem = document.getElementById('map');
 const questionForm = document.querySelector('.question-form');
 const title = document.querySelector('.mdl-layout-title');
-let clicked = false;
+let startingPoint;
+let endPoint;
 
 function geocodeAddress(address) {
   return new Promise((resolve, reject) => {
@@ -32,14 +33,18 @@ function initMap() {  // eslint-disable-line no-unused-vars
       const titleText = `All roads lead to ${place}`;
       document.title = titleText;
       title.innerHTML = titleText;
-      const startingSnackbar = animateSnackbar();
-      const startingPoint = createStartingPoint(map, startingSnackbar);
+      animateSnackbar();
+      createPoint(map).then((startingCoords)=>{
+        startingPoint = startingCoords;
+        createPoint(map).then((endCoords)=>{
+          endPoint = endCoords;
+        })
+      });
     }, (error) => {
       alert(error);
     });
   });
 }
-
 
 function onGeocodeComplete(coords) {
   const map = new google.maps.Map(
@@ -59,26 +64,27 @@ function onGeocodeComplete(coords) {
 function animateSnackbar() {
   const snackbarContainer = document.querySelector('#select-points-toast');
   snackbarContainer.MaterialSnackbar.showSnackbar({
-    message: 'Select starting point',
+    message: 'Select starting & end point',
     actionHandler: () => {
       snackbarContainer.classList.add('is-hidden');
     },
     actionText: 'Done',
     timeout: 100000,
   });
-  return snackbarContainer;
-  // https://getmdl.io/components/index.html#snackbar-section
 }
 
-function createStartingPoint(map, snackbar) {
+function createPoint(map) {
+  return new Promise(function(resolve, reject) {
   google.maps.event.addListenerOnce(map, 'click', (event) => {
-    snackbar.classList.add('is-hidden');
-    return new google.maps.Marker({
-      position: {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng()
-      },
-      map,
-    })
+      resolve(
+        new google.maps.Marker({
+          position: {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng()
+          },
+          map,
+        })
+      );
+    });
   });
 }
