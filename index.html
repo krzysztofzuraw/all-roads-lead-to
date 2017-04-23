@@ -4,53 +4,15 @@
     <meta charset="UTF-8">
     <title>All roads leeds to </title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-blue.min.css">
   </head>
   <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <div class="mdl-layout-spacer"></div>
-          <span class="mdl-layout-title">All roads lead to ...</span>
-          <div class="mdl-layout-spacer"></div>
-        </div>
-      </header>
-      <main class="mdl-layout__content">
-        <div class="mdl-grid form-max-width">
-          <div class="mdl-cell--12-col mdl-card mdl-shadow--4dp question-form">
-            <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">Select to which place all roads lead</h2>
-            </div>
-
-            <div class="mdl-card__supporting-text">
-              Click in search icon then type the name of place or city that you want to
-              be your point. To this point all roads will lead.
-              After you finish typing just hit enter.
-            </div>
-
-            <div class="mdl-card__actions mdl-card--border">
-              <form class="search-form">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                  <label class="mdl-button mdl-js-button mdl-button--icon" for="place">
-                    <i class="material-icons">search</i>
-                  </label>
-                  <div class="mdl-textfield__expandable-holder mdl-cell--12-col">
-                    <input class="mdl-textfield__input" name="place" type="text" id="place">
-                    <label class="mdl-textfield__label" for="place">Type place...</label>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div id="map"></div>
-        <div id="select-points-toast" class="mdl-js-snackbar mdl-snackbar">
-          <div class="mdl-snackbar__text"></div>
-	  <button class="mdl-snackbar__action" type="button"></button>
-        </div>
-      </main>
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <div class="wrapper">
+      <form class="place-search">
+	<input name="place" type="text" placeholder="Type place" required/>
+	<input type="submit" value="Search"/>
+      </form>
+    </div>
+    <div id="map"></div>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP28d9-DMZK_4AIR0eKZfVe4q0EbSp_AE&callback=initMap">
     </script>

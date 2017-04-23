@@ -1,15 +1,21 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+
 .form-max-width {
   width: 512px;
 }
 
 .question-form {
   margin-top: calc(100% / 2);
-}
-
-#map {
-  height: 100%;
-  width: 100%;
-  position: static !important;
 }
 
 .is-hidden {
