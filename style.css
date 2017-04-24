@@ -1,21 +1,32 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 #map {
   height: 100%;
   width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
-
-.form-max-width {
-  width: 512px;
+.wrapper {
+  position: absolute;
+  z-index: 1;
+  padding: 20px;
+  max-width: 350px;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  background: rgba(255,255,255,1);
+  box-shadow: 0 0 0 10px rgba(0,0,0,0.1);
 }
 
-.question-form {
-  margin-top: calc(100% / 2);
+.place-search {
+  margin-top: 20px;
+}
+
+.place-search input {
+  padding:10px;
+  outline:0;
+  border:1px solid rgba(0,0,0,0.1);
 }
 
 .is-hidden {
