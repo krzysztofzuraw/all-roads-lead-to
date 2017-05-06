@@ -1,15 +1,14 @@
 {
   "name": "all-roads-leeds-to",
   "version": "1.0.0",
-  "description": "Fun application",
+  "description": "Application to display where all roads lead.",
   "main": "script.js",
   "scripts": {
     "start": "browser-sync start --server --files '*.css, *.html, *.js'",
-    "lint": "eslint ./ --cache --ignore-pattern .gitignore"
   },
-  "pre-commit": ["lint"],
   "keywords": [
-    "google_maps"
+    "google_maps",
+    "es6"
   ],
   "author": "Krzysztof Żuraw",
   "license": "MIT",
@@ -21,6 +20,9 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
-    "pre-commit": "^1.2.2"
+  },
+    "repository":{
+    "type": "git",
+    "url": "https://github.com/krzysztofzuraw/all-roads-lead-to.git"
   }
 }

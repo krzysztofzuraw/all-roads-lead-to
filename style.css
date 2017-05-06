@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'LatoWebRegular';
+  src: url('fonts/Lato-Regular.woff2') format('woff2');
+  font-style: normal,
+  font-weight: normal,
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: LatoWebRegular, Arial, sans-serif;
+}
+
 #map {
   height: 100%;
   width: 100%;
@@ -21,6 +33,9 @@
 
 .place-search {
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .place-search input {
@@ -29,6 +44,29 @@
   border:1px solid rgba(0,0,0,0.1);
 }
 
-.is-hidden {
-  display: none !important;
+.place-search .supporting-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.snackbar {
+  z-index: 1;
+  background: #323232;
+  position: absolute;
+  min-width: 288px;
+  max-width: 568px;
+  height: 48px;
+  color: white;
+  text-align: center;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  display: none;
+}
+
+.snackbar p {
+  position: relative;
 }
