@@ -4,7 +4,7 @@
   "description": "Application to display where all roads lead.",
   "main": "script.js",
   "scripts": {
-    "start": "browser-sync start --server --files '*.css, *.html, *.js'",
+    "start": "browser-sync start --server --files '*.css, *.html, *.js'"
   },
   "keywords": [
     "google_maps",
@@ -19,7 +19,7 @@
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-react": "^6.9.0"
   },
     "repository":{
     "type": "git",

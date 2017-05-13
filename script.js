@@ -1,41 +1,37 @@
-const searchForm = document.querySelector('.place-search');
-let map;
-
 function initMap() {  // eslint-disable-line no-unused-vars
-  map = new google.maps.Map(
+  const map = new google.maps.Map(
     document.getElementById('map'),
     {
       zoom: 4,
       center: { lat: 52.00, lng: 21.00 },
     });
 
-  const directionsService = new (google.maps.DirectionsService)();
-  const directionsDisplay = new (google.maps.DirectionsRenderer)();
-  directionsDisplay.setMap(map);
+  const searchForm = document.querySelector('.place-search');
+  searchForm.addEventListener('submit', onSubmit.bind(searchForm, map));
+}
 
-  searchForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const placeValue = event.target.querySelector('[name=place]').value;
-    geocodeAddress(placeValue).then((geocodedCoords) => {
-      const mainWayPoint = createMainWaypoint(geocodedCoords);
+function onSubmit(map, event) {
+  let mainWayPoint;
+  let startingPoint;
 
-      searchForm.parentElement.style.display = 'none';
-      const titleText = `All roads lead to ${placeValue}`;
-      document.title = titleText;
-
-      createPoint(map).then((startingCoords) => {
-        createPoint(map).then((endCoords) => {
-          calculateAndDisplayRoute(
-            directionsService,
-            directionsDisplay,
-            mainWayPoint,
-            startingCoords,
-            endCoords,
-          );
-        });
-      });
+  event.preventDefault();
+  const placeValue = event.target.querySelector('[name=place]').value;
+  geocodeAddress(placeValue)
+    .then(geocodedCoords => createMainWaypoint(geocodedCoords, map))
+    .then((mainWayPointCoords) => {
+      mainWayPoint = mainWayPointCoords;
+      return createPoint(map);
+    })
+    .then((startingPointCoords) => {
+      startingPoint = startingPointCoords;
+      return createPoint(map);
+    })
+    .then((endPoint) => {
+      calculateAndDisplayRoute(mainWayPoint, startingPoint, endPoint, map);
     });
-  });
+  this.parentElement.style.display = 'none';
+  const titleText = `All roads lead to ${placeValue}`;
+  document.title = titleText;
 }
 
 
@@ -57,7 +53,7 @@ function geocodeAddress(address) {
   });
 }
 
-function createMainWaypoint(coords) {
+function createMainWaypoint(coords, map) {
   map.setCenter(coords);
   return new google.maps.Marker({
     position: coords,
@@ -86,15 +82,19 @@ function createPoint(map) {
   });
 }
 
-function calculateAndDisplayRoute(service, display, wayPoint, startingPoint, endPoint) {
-  service.route({
+function calculateAndDisplayRoute(wayPoint, startingPoint, endPoint, map) {
+  const directionsService = new (google.maps.DirectionsService)();
+  const directionsDisplay = new (google.maps.DirectionsRenderer)();
+  directionsDisplay.setMap(map);
+
+  directionsService.route({
     origin: { lat: startingPoint.position.lat(), lng: startingPoint.position.lng() },
     destination: { lat: endPoint.position.lat(), lng: endPoint.position.lng() },
     waypoints: [{ location: wayPoint.position }],
     travelMode: 'DRIVING',
   }, (response, status) => {
     if (status === 'OK') {
-      display.setDirections(response);
+      directionsDisplay.setDirections(response);
     } else {
       alert('Route not found!');
     }
