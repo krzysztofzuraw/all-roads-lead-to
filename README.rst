@@ -12,6 +12,11 @@ Running
    $ npm install
    $ npm start
 
+What I learned
+--------------
+
+* How to use GoogleMaps API
+* Javascript Async
 
 Credits
 -------
